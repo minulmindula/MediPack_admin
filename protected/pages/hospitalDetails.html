@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Allocate | Omobio System Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" href="http://v2.omobio.net/wp-content/themes/omobioweb/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="../plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../css/themes/all-themes.css" rel="stylesheet" />
+
+    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet"/>
+
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+
+    <link href="../plugins/dropzone/dropzone.css" rel="stylesheet">
+
+</head>
+
+<body class="theme-grey">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-deep-purple">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+
+<section>
+    <div class="container-fluid">
+        <div class="block-header">
+            <button id="addBtn" onclick="javascript:addHospitalFormShow()" type="button" style="float: right; margin-bottom: 10px; display: block;" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                <i class="material-icons">add</i>
+            </button>
+            <h2>HOSPITALS</h2>
+        </div>
+
+
+        <!-- Input -->
+        <div id="addHospitalForm" class="row clearfix" style="display: none;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div style="padding: 10px 10px 10px 20px;">
+                        <button type="button" style="float: right; margin: 10px;" class="btn btn-default btn-circle waves-effect waves-circle waves-float" onclick="javascript:hideDoctorDetails()">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <div>
+                            <h2>Add Hospital</h2>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="hospitalName" type="text" class="form-control" placeholder="Hospital Name" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="hospitalAddress" type="text" class="form-control" placeholder="Address" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="hospitalHotline" type="text" class="form-control" placeholder="Hotline" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="hospitalEmerg" type="text" class="form-control" placeholder="Emergency Contact" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <select id="hospitalCity" class="form-control show-tick" data-live-search="true" title="Select Town">
+                                    <option value="Colombo 1">Colombo 1</option>
+                                    <option>Colombo 2</option>
+                                    <option>Kotte</option>
+                                    <option>Awissawella</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-5">
+                                <h5>Coordinates:</h5>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input id="hospitalLat" type="text" class="form-control" placeholder="Latitudes" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input id="hospitalLong" type="text" class="form-control" placeholder="Longitude" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2">
+                                <h5>Add logo:</h5>
+                                <form action="../backend/addHospitalIcon.php" id="frmFileUpload" class="dropzone" method="POST" enctype="multipart/form-data" accept-charset="utf-8">
+                                <div class="dz-message">
+                                    <div class="drag-icon-cph">
+                                        <i class="material-icons">touch_app</i>
+                                    </div>
+                                    <h3>Drop files here or click to upload.</h3>
+                                  </div>
+                                  <div class="fallback">
+                                      <input type="file" name="image" />
+                                  </div>
+                                    <input type="submit" class="btn btn-primary waves-effect" />
+                                </form>
+                            </div>
+                        </div>
+                        <button onclick="javascript:hospitalAddSaveChanges()" type="button" class="btn btn-primary waves-effect">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+
+        <div class="row clearfix" id="hospital_info_cards" style="margin-top: 50px;">
+            <!-- Hospital Detail Cards -->
+        </div>
+
+    </div>
+</section>
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.js"></script>
+<script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../plugins/node-waves/waves.js"></script>
+<script src="../plugins/dropzone/dropzone.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/functions/home.js"></script>
+<script src="../js/functions/hospitalPage.js"></script>
+
+
+</body>
+
+</html>
+
+

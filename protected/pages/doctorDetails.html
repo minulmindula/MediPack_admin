@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Allocate | Omobio System Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" href="http://v2.omobio.net/wp-content/themes/omobioweb/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="../plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../css/themes/all-themes.css" rel="stylesheet" />
+
+    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <link href="../plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="theme-grey">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-deep-purple">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+
+<section>
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>DOCTORS</h2>
+        </div>
+
+        <!--Doctor details - individual-->
+        <div class="row clearfix" id="doctor_details_card" style="display: none;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card" style="padding-bottom: 15px;">
+                    <div style="padding: 10px 10px 10px 20px;">
+                        <button type="button" style="float: right; margin: 10px;" class="btn btn-default btn-circle waves-effect waves-circle waves-float" onclick="javascript:hideDoctorDetails()">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <div id="docName">
+
+                        </div>
+                    </div>
+                    <table border="0" width="100%">
+                        <tr>
+                            <td width="40%" valign="top">
+                                <div style="margin-left: 20px;" id="DocInfo">
+                                    <div style="margin-top: 10px;">
+                                        <label>E-mail address:</label><small> </small><small>doc@dd.com</small>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <label>Contact number:</label><small> </small><small>123456</small>
+                                    </div>
+                                    <div style="margin-top: 10px;">
+                                        <label>Address:</label><small> </small><small>123456</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td valign="top">
+                                <div class="col-lg-8">
+                                    <h5>Qualifications:</h5>
+                                    <div id="viewDocDetailsQualifications" class="table-responsive" style="overflow-x: hidden;">
+
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--Doctor details editing page-->
+        <!--<div class="container-fluid">-->
+
+        <div class="row clearfix" style="display: none;" id="addNewDoctorForm">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div style="padding: 10px 10px 10px 20px;">
+                        <button onclick="javascript:addFormHide()" type="button" style="float: right; margin: 10px;" class="btn btn-default btn-circle waves-effect waves-circle waves-float" onclick="javascript:hideDoctorDetails()">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <div>
+                            <h2>Add doctor</h2>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="addForm_firstname" type="text" class="form-control" placeholder="Firstname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="addForm_address" type="text" class="form-control" placeholder="Address" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="addForm_lastname" type="text" class="form-control" placeholder="Lastname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="addForm_contactNo" type="text" class="form-control" placeholder="Contact number" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input id="addForm_email" type="text" class="form-control" placeholder="Email address" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Qualifications:</label>
+                                <div class="form-group demo-tagsinput-area">
+                                    <div class="form-line">
+                                        <input id="addForm_qualifications" type="text" class="form-control" value="" placeholder="Enter qualification... (Separate each with a ' , ' if many.)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Specialization:</label>
+
+                            </div>
+                            <div class="col-sm-3" style="display: block;">
+                                <select id="addForm_Specialization" class="form-control show-tick" data-live-search="true" title="Choose Specialization">
+                                    <option value="Allergist/Immunologist">Allergist/Immunologist</option>
+                                    <option value="Anesthesiologist">Anesthesiologist</option>
+                                    <option value="Cardiologist">Cardiologist</option>
+                                    <option value="Dermatologist">Dermatologist</option>
+                                    <option value="Endocrinologist">Endocrinologist</option>
+                                    <option value="Family Physician">Family Physician</option>
+                                    <option value="Gastroenterologist">Gastroenterologist</option>
+                                    <option value="Geriatric Medicine Specialist">Geriatric Medicine Specialist</option>
+                                    <option value="Infectious Disease Specialist">Infectious Disease Specialist</option>
+                                    <option value="Internist">Internist</option>
+                                    <option value="Medical Geneticist">Medical Geneticist</option>
+                                    <option value="Nephrologist">Nephrologist</option>
+                                    <option value="Neurologist">Neurologist</option>
+                                    <option value="Obstetrician and Gynecologist">Obstetrician and Gynecologist</option>
+                                    <option value="Oncologist">Oncologist</option>
+                                    <option value="Ophthalmologist">Ophthalmologist</option>
+                                    <option value="Physiatrist">Physiatrist</option>
+                                    <option value="Radiologist">Radiologist</option>
+                                    <option value="Sports Medicine Specialist">Sports Medicine Specialist</option>
+                                    <option value="General Surgeon">General Surgeon</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button onclick="javascript:addNewDoctorSave()" type="button" class="btn btn-primary waves-effect">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Edit doctor -->
+        <div class="row clearfix" style="display: none;" id="editDoctorDetailsForm">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div style="padding: 10px 10px 10px 20px;">
+                        <button onclick="javascript:closeDoctorEditForm()" type="button" style="float: right; margin: 10px;" class="btn btn-default btn-circle waves-effect waves-circle waves-float" onclick="javascript:hideDoctorDetails()">
+                            <i class="material-icons">close</i>
+                        </button>
+                        <div>
+                            <h2>Edit doctor details</h2>
+                        </div>
+                    </div>
+                    <div class="body">
+                        <div class="row clearfix">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <span style="font-size: 12px;">Firstname:</span>
+                                        <input id="editForm_firstname" type="text" class="form-control" placeholder="Firstname" />
+                                        <input id="editForm_ID" type="text" class="form-control" style="display: none;" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <span style="font-size: 12px;">Address:</span>
+                                        <input id="editForm_address" type="text" class="form-control" placeholder="Address" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <span style="font-size: 12px;">Lastname:</span>
+                                        <input id="editForm_lastname" type="text" class="form-control" placeholder="Lastname" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <span style="font-size: 12px;">Contact number:</span>
+                                        <input id="editForm_contactNo" type="text" class="form-control" placeholder="Contact number" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Qualifications:</label><br />
+                                <!--<div class="form-group demo-tagsinput-area">-->
+                                    <!--<div class="form-line">-->
+                                        <!--<input id="editForm_qualification" type="text" class="form-control" data-role="tagsinput">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <table class="col-sm-10">
+                                    <tr>
+                                        <td>
+                                            <div style="margin-top: 10px;" id="qualificationsView"></div>
+                                        </td>
+                                        <td>
+                                            <button id="addIconQual" onclick="javascript:addMoreQualifications()" style="margin-left: 20px; width: 30px; height: 30px; padding: 0" type="button" class="btn btn-primary waves-effect">
+                                                <i class="material-icons">add</i>
+                                            </button>
+                                            <button id="cancelIconQual" onclick="javascript:addMoreQualificationsCancel()" style="margin-left: 20px; width: 30px; height: 30px; padding: 0; display: none;" type="button" class="btn btn-primary waves-effect">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="form-group col-lg-10" id="addQualificationField" style="display: none; margin-top: 10px;">
+                                                <div class="form-line">
+                                                    <input id="editForm_qualifications" type="text" class="form-control" placeholder="Enter qualification... (Separate each with a ' , ' if many.)" />
+                                                </div>
+                                            </div>
+                                            <button id="addQualBtn" style="margin-left: 20px; width: 30px; height: 30px; padding: 0; display: none;" type="button" class="btn btn-primary waves-effect">
+                                                Add
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Specialization:</label>
+                                <table id="specializationView">
+                                    <tr>
+                                        <td>
+                                            <p id="specializationViewText" style="padding: 10px; margin-top: 10px;"></p>
+                                        </td>
+                                        <td>
+                                            <button onclick="javascript:editSpecialization()" style="margin-left: 10px; width: 30px; height: 30px; padding: 0" type="button" class="btn btn-primary waves-effect">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                            <div id="editSpecializationDropdown" class="col-sm-3" style="display: none;">
+                                <table border="0" style="width: 300px;">
+                                    <tr>
+                                        <td width="85%">
+                                            <select id="editForm_Specialization" class="form-control show-tick" data-live-search="true" title="Choose Specialization">
+                                                <option value="Allergist/Immunologist">Allergist/Immunologist</option>
+                                                <option value="Anesthesiologist">Anesthesiologist</option>
+                                                <option value="Cardiologist">Cardiologist</option>
+                                                <option value="Dermatologist">Dermatologist</option>
+                                                <option value="Endocrinologist">Endocrinologist</option>
+                                                <option value="Family Physician">Family Physician</option>
+                                                <option value="Gastroenterologist">Gastroenterologist</option>
+                                                <option value="Geriatric Medicine Specialist">Geriatric Medicine Specialist</option>
+                                                <option value="Infectious Disease Specialist">Infectious Disease Specialist</option>
+                                                <option value="Internist">Internist</option>
+                                                <option value="Medical Geneticist">Medical Geneticist</option>
+                                                <option value="Nephrologist">Nephrologist</option>
+                                                <option value="Neurologist">Neurologist</option>
+                                                <option value="Obstetrician and Gynecologist">Obstetrician and Gynecologist</option>
+                                                <option value="Oncologist">Oncologist</option>
+                                                <option value="Ophthalmologist">Ophthalmologist</option>
+                                                <option value="Physiatrist">Physiatrist</option>
+                                                <option value="Radiologist">Radiologist</option>
+                                                <option value="Sports Medicine Specialist">Sports Medicine Specialist</option>
+                                                <option value="General Surgeon">General Surgeon</option>
+                                            </select>
+                                        </td>
+                                        <td width="15%">
+                                            <button onclick="javascript:editSpecializationCancel()" style="margin-left: 10px; width: 30px; height: 30px; padding: 0" type="button" class="btn btn-primary waves-effect">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <button onclick="javascript:editDoctorSaveChanges()" style="margin-left: 20px;" type="button" class="btn btn-primary waves-effect">
+                                Save changes
+                            </button>
+                            <p id="editForm_success" style="display: none; margin-top: 20px; text-align: center; font-size: 18px; font-weight: bold; color: #00c72c;">
+                                Changes has been changed successfully!
+                            </p>
+                            <p id="editForm_error" style="display: none; margin-top: 20px; text-align: center; font-size: 18px; font-weight: bold; color: #c7000f;">
+                                Error occured while saving your changes. Please try again!
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--</div>-->
+
+        <!--Doctor details table-->
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <button onclick="javascript:addFormShow()" type="button" style="float: right;" class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <h2>
+                            Doctor Details
+                        </h2>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive"   style="overflow-x: hidden;">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable" id="doctor_table">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>E-mail address</th>
+                                    <th>Contact number</th>
+                                    <th>Specialization</th>
+                                    <th>Options</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.js"></script>
+<script src="../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../plugins/node-waves/waves.js"></script>
+<script src="../plugins/jquery-datatable/jquery.dataTables.js"></script>
+<script src="../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+<script src="../js/pages/tables/jquery-datatable.js"></script>
+<script src="../plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/functions/doctorPage.js"></script>
+
+</body>
+
+</html>
+
+

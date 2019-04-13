@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Allocate | Omobio System Dashboard</title>
+    <!-- Favicon-->
+    <link rel="icon" href="http://v2.omobio.net/wp-content/themes/omobioweb/img/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="../plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="../plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Morris Chart Css-->
+    <link href="../plugins/morrisjs/morris.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="../css/themes/all-themes.css" rel="stylesheet" />
+
+    <link href="../plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet"/>
+
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="theme-grey">
+
+<!-- Page Loader -->
+<div class="page-loader-wrapper">
+    <div class="loader">
+        <div class="preloader">
+            <div class="spinner-layer pl-deep-purple">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>Please wait...</p>
+    </div>
+</div>
+<!-- #END# Page Loader -->
+
+<section>
+    <div class="container-fluid">
+        <div class="block-header">
+            <h2>DASHBOARD</h2>
+        </div>
+
+        <div class="row clearfix">
+
+            <!--Patient count-->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" onclick="showPatients()">
+                <div class="info-box-4 hover-expand-effect">
+                    <div class="icon">
+                        <img src="../images/icons/user.png" style="margin-bottom: 15px"/>
+                    </div>
+                    <div class="content">
+                        <div class="text" style="font-size: 15px;">Patients</div>
+                        <div class="number">125</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" onclick="showDoctors()">
+                <div class="info-box-4 hover-expand-effect">
+                    <div class="icon">
+                        <img src="../images/icons/doctor.png" style="margin-bottom: 15px"/>
+                    </div>
+                    <div class="content">
+                        <div class="text" style="font-size: 15px;">Doctors</div>
+                        <div class="number">125</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" onclick="showHospitals()">
+                <div class="info-box-4 hover-expand-effect">
+                    <div class="icon">
+                        <img src="../images/icons/hospital.png" style="margin-bottom: 15px"/>
+                    </div>
+                    <div class="content">
+                        <div class="text" style="font-size: 15px;">Hospitals</div>
+                        <div class="number">125</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<script src="../plugins/jquery/jquery.min.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.js"></script>
+<script src="../plugins/node-waves/waves.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/functions/home.js"></script>
+
+</body>
+
+</html>
+
+
